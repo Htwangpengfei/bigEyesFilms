@@ -41,11 +41,10 @@ export default {
 <style scoped lang="less">
 @main-color: #e74847;
 .mynav {
-  height: 5rem;
+  height: 5rem !important;
   background-color: @main-color;
   display: flex;
   justify-content: space-between;
-
   top: 0;
   width: 100%;
   z-index: 100;

@@ -9,15 +9,19 @@ export default new Vuex.Store({
       id:1,
       nm:"北京"
     },
+    cinemaId: '1412992',
     isNavbar:true,
     isTabbar:true,
     navbar: {
       isLeft: false,
-      title: "大眼电影",
+      title: "咕咕查电影",
       isRight: true,
     }
   },
   mutations: {
+    getCinemaId(state, strId) {
+      state.cinemaId = strId;
+    },
     hideTabbar(state){
       state.isTabbar=false;
     },

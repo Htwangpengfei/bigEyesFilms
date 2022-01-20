@@ -46,10 +46,12 @@ export default {
     },
   },
   created() {
-    http.getCinema(this.getNowTime(), this.$store.state.city.id).then((res) => {
-      this.cinemas = res.data;
-      // console.log(this.cinemas);
-    });
+    this.$nextTick(()=>{
+      http.getCinema(this.getNowTime(), this.$store.state.city.id).then((res) => {
+        this.cinemas = res.data;
+        // console.log(this.cinemas);
+      });
+    })
   },
   computed: {
     cinemaText() {

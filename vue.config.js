@@ -10,6 +10,12 @@ module.exports={
                     '^/api':''
                 }
             }
-        }
-    }
+        },
+        // true 则热更新，false 则手动刷新，默认值为 true
+        inline: false,
+    },
+    // chainWebpack: config => {
+    //     // 修复HMR-热更新
+    //     config.resolve.symlinks(true);  
+    // }
 }

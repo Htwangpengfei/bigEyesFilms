@@ -2,20 +2,39 @@
   <li>
     <img :src="movie.img" alt="" />
     <div class="info">
-      <div>
+      <div @click="gotoMenu(movie.id)">
         <p class="name">{{movie.nm}}</p>
         <p class="score">评分<span>{{movie.sc}}</span></p>
         <p class="actors">主演：{{movie.star}}</p>
         <p class="num">{{movie.showInfo}}</p>
       </div>
-      <p class="buy">购票</p>
+      <p class="buy" @click="showDetail(movie.id,movie.nm)">影院</p>
     </div>
   </li>
 </template>
 <script>
 export default {
   name: "cell",
-  props:["movie"]
+  props:["movie"],
+  data() {
+    return {}
+  },
+  methods: {
+    gotoMenu(id) {
+      this.$store.commit('getCinemaId', id)
+      this.$router.push({
+        path: '/video'
+      })
+    },
+    showDetail(movieid,nm){
+      console.log(movieid, 'this')
+      // 动态路由
+      this.$router.push({
+        path:'/detail/'+movieid,
+        query:{title:nm},
+      });
+    }
+  }
 };
 </script>
 

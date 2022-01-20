@@ -40,7 +40,7 @@ export default {
     this.$store.commit("showMine", {
       isLeft: true,
       isRight: false,
-      title: "大眼电影",
+      title: "咕咕查电影",
     }),
       this.$store.commit("hideTabbar");
   },
@@ -49,7 +49,7 @@ export default {
     this.$store.commit("showMine", {
       isLeft: false,
       isRight: true,
-      title: "大眼电影",
+      title: "咕咕查电影",
     }),
       this.$store.commit("showTabbar");
   },

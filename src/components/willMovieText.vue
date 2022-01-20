@@ -7,7 +7,7 @@
         </div>
         <div class="word">
           <p class="name">{{ type.nm }}</p>
-          <p>
+          <p style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
             <span class="num">{{ type.wish }}</span>
             <span>人想看</span>
           </p>
@@ -16,7 +16,7 @@
         </div>
         <div class="btn">
           <p v-if="type.showst==4">预售</p>
-          <p id="col" v-else>想看</p>
+          <p id="col" v-else>待映</p>
         </div>
       </div>
     </li>
@@ -93,7 +93,7 @@ li {
     white-space: nowrap;
   }
   .num {
-    color: gold;
+    color: #FAAF00;
     font-size: 2rem;
   }
   .name {

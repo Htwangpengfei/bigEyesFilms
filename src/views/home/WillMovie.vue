@@ -11,7 +11,7 @@
                 alt=""
               />
             </p>
-            <span>{{ type.id }}人想看</span>
+            <span class="xiangkan">{{ type.id }}人想看</span>
           </div>
           <p class="name">{{ type.nm }}</p>
           <p class="time">{{ type.comingTitle }}</p>
@@ -98,6 +98,15 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+.xiangkan{
+  font-weight: 500;
+  font-size: 16px !important;
+  width:80px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  color: #FAAF00;
 }
 .will-movie {
   width: 100%;

@@ -4,17 +4,17 @@
       <a-icon type="home" />
       <p>电影</p>
       </router-link>
-      <router-link to="/video">
+      <!-- <router-link to="/video">
       <a-icon type="video-camera" />
       <p>视频</p>
-      </router-link>
-      <router-link to="/video">
+      </router-link> -->
+      <!-- <router-link to="/video">
       <a-icon type="fire" />
       <p>片段</p>
-      </router-link>
+      </router-link> -->
       <router-link to="/video">
       <a-icon type="sketch" />
-      <p>演出</p>
+      <p>论坛</p>
       </router-link>
       <router-link to="/mine">
       <a-icon type="user" />
@@ -33,6 +33,7 @@ export default{
 <style scoped lang="less">
 @main-color: #e74847;
 .tab{
+    
     height: 5rem;
     box-sizing: border-box;
     border-top:1px solid lightgray;

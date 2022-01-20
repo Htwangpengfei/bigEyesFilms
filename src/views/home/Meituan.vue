@@ -9,7 +9,7 @@
     <p class="one">立即注册</p>
     <p class="two">找回密码</p>
     <div class="maoyan">
-      <p>© 大眼电影 客服电话：<span>400-670-5335</span></p>
+      <p>© 咕咕查电影 客服电话：<span>400-670-5335</span></p>
     </div>
   </div>
 </template>

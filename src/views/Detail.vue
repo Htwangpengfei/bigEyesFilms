@@ -23,11 +23,13 @@ import http from "@/axios/index.js";
 import Navbar from "@/components/Navbar.vue";
 import Movieinfo from "@/components/MovieInfo.vue";
 import selectcard from "@/components/SelectCard.vue";
-import Cinemacell from "@/components/Cinema.vue"
+import Cinemacell from "@/components/Cinema.vue";
 export default {
   name: "detail",
   data() {
     return {
+      movieId: '',
+      movieData: '',
       dateIndex: 0,
       times: [],
       cinemas: [],
@@ -61,6 +63,12 @@ export default {
     },
     changeDate(index) {
       this.dateIndex = index;
+      this.movieData = this.times[index].date.toString()
+      console.log(this.movieData,this.movieId)
+      http.getDataForCinema(this.movieId, this.$store.state.city.id, this.movieData).then((res)=>{
+        console.log(res.data)
+        this.cinemas = res.data.data.cinemas
+      })
     },
   },
   computed: {
@@ -96,6 +104,9 @@ export default {
   },
   created() {
     //   修改bar
+    console.log(window.location.hash)
+    this.movieId = window.location.hash.slice(9,window.location.hash.indexOf('?'))
+    console.log(this.movieId)
     this.$store.commit("hideTabbar");
     this.$store.commit("hideNavbar");
     this.$store.commit("showMine", {
@@ -107,32 +118,24 @@ export default {
     // 影片详情
     http.getMovieDetail(this.$route.params.movieid).then((res) => {
       this.movieInfo = res.data.data.movie;
-      // console.log(this.movieInfo);
+      console.log(this.movieInfo);
     });
     // 影院列表
-    http
-      .getDetailCinemas(
+    http.getDetailCinemas(
         this.$route.params.movieid,
         this.getNowTime(),
         this.$store.state.city.id
       )
       .then((res) => {
-        // console.log(res.data);
+        console.log(res.data);
         this.cinemas = res.data.data.cinemas;
         console.log(this.cinemas);
       });
     // 选项卡
-    http
-      .getDetailSelect(
-        this.$route.params.movieid,
-        this.getNowTime(),
-        this.$store.state.city.id
-      )
-      .then((res) => {
-        // console.log(res.data);
+    http.getDetailSelect(this.$route.params.movieid, this.getNowTime(), this.$store.state.city.id).then((res) => {
+        console.log(res.data);
       });
-    http
-      .getDetailTime(this.$route.params.movieid, this.$store.state.city.id)
+    http.getDetailTime(this.$route.params.movieid, this.$store.state.city.id)
       .then((res) => {
         // console.log(res.data);
         this.times = res.data.data.dates;
@@ -143,7 +146,7 @@ export default {
     this.$store.commit("showNavbar");
     this.$store.commit("showMine", {
       isLeft: false,
-      title: "大眼电影",
+      title: "咕咕查电影",
       isRight: false,
     });
   },
@@ -161,7 +164,7 @@ export default {
     line-height: 45px;
     padding: 0 4px;
     .choose {
-      width: 100%;
+      width: 100px;
       height: 100%;
       text-align: center;
       border-bottom: 2px solid #f03d37;

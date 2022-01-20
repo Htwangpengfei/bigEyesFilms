@@ -4,8 +4,8 @@
     <div class="good">
       <p class="title">最受好评的电影</p>
       <swiper class="swiper" :options="swiperOption">
-        <swiper-slide v-for="(movie, index) in hps" :key="index" @click="showDetail(movie.id)"> 
-          <div :style="'background-image:url(' + movie.img + ')'">
+        <swiper-slide v-for="(movie, index) in hps" :key="index"> 
+          <div :style="'background-image:url(' + movie.img + ')'" @click="showDetail(movie.id)">
             <p v-if="movie.score" class="grade">评分：{{movie.score}}</p>
             <p v-else class="wish">{{movie.wish}}人想看</p>
           </div>
@@ -15,7 +15,7 @@
     </div>
     <div class="film">
       <ul>
-        <div v-for="(movie, index) in movies" :key="index" @click="showDetail(movie.id,movie.nm)">
+        <div v-for="(movie, index) in movies" :key="index">
           <hot-cell :movie="movie"/>
         </div>
       </ul>
@@ -50,6 +50,7 @@ export default {
   },
   methods: {
     showDetail(movieid,nm){
+      console.log(movieid, 'this')
       // 动态路由
       this.$router.push({
         path:'/detail/'+movieid,
@@ -89,15 +90,18 @@ export default {
     },
   },
   created() {
-    // 首页 热门 好评
-    http.getHotHp().then((res) => {
-      this.hp = res.data;
-    });
-    // 首页 热门 列表
-    http.getHotMovieList().then((res) => {
-      this.movieList = res.data.movieList;
-      // console.log(this.movieList);
-    });
+      // 首页 热门 好评
+      this.$nextTick(()=>{
+        http.getHotHp().then((res) => {
+        this.hp = res.data;
+      });
+      // 首页 热门 列表
+      http.getHotMovieList().then((res) => {
+        console.log(res)
+        this.movieList = res.data.movieList;
+        // console.log(this.movieList);
+      });
+    })
   },
 };
 </script>
@@ -130,6 +134,7 @@ ul {
         background-position: center center;
         overflow: hidden;
         .grade,.wish {
+          text-align: center;
           position: absolute;
           bottom: 0;
           left: 0;

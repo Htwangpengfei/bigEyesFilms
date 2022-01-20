@@ -29,8 +29,10 @@ const WILL_TEXT = "/api/ajax/comingList?ci=76&token=&limit=10&optimus_uuid=D9F1F
 const Cinema = "/api/ajax/moreCinemas"
 
 // home页面经典电影
-const Oldercinema="/api/ajax/moreClassicList?sortId=1&showType=3&limit=20&offset=10&optimus_uuid=D9F1FC20DDF611EB8EE9456AD6CD7F17CA182499ADC145FEADD38EE5319B88AA&optimus_risk_level=71&optimus_code=10"
+const Oldercinema = "/api/ajax/moreClassicList?sortId=1&showType=3&limit=20&offset=10&optimus_uuid=D9F1FC20DDF611EB8EE9456AD6CD7F17CA182499ADC145FEADD38EE5319B88AA&optimus_risk_level=71&optimus_code=10"
 
+// 筛选时间
+const dataForCinema = "/api/api/mtrade/mmcs/cinema/v2/select/movie/cinemas.json?"
 // home页面经典电影
 function getOldCityList() {
     return axios.get(Oldercinema);
@@ -120,6 +122,23 @@ function getDetailTime(movieid, cityId) {
     })
 }
 
+// 筛选时间
+function getDataForCinema(Id, cityId, date) {
+    return axios.get(dataForCinema, {
+        params: {
+            movieId: Id,
+            cityId: cityId,
+            limit: 20,
+            showDate: date,
+            client: 'iphone',
+            offset: 0,
+            ci: 76,
+            utm_term: 7.5,
+            channelId: 4
+        }
+    })
+}
+
 
 // 待映-头
 function getWillHeader() {
@@ -129,8 +148,17 @@ function getWillHeader() {
 function getWillText() {
     return axios.get(WILL_TEXT)
 }
-
+// 请求电影详情介绍评论页代码
+function getHtmlText(url) {
+    return axios.get(url, {
+        // headers: {
+        //     'content-type': 'text/html;charset=utf-8',
+        //     'Accept': 'text/html,application/xhtml+xml,application/xml'
+        // }
+    })
+}
 export default {
+    getHtmlText,
     getDetailTime,
     getDetailSelect,
     getDetailCinemas,
@@ -141,5 +169,6 @@ export default {
     getWillHeader,
     getWillText,
     getCinema,
-    getOldCityList
+    getOldCityList,
+    getDataForCinema
 }

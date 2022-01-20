@@ -64,9 +64,7 @@ export default {
     changeDate(index) {
       this.dateIndex = index;
       this.movieData = this.times[index].date.toString()
-      console.log(this.movieData,this.movieId)
       http.getDataForCinema(this.movieId, this.$store.state.city.id, this.movieData).then((res)=>{
-        console.log(res.data)
         this.cinemas = res.data.data.cinemas
       })
     },
@@ -104,9 +102,7 @@ export default {
   },
   created() {
     //   修改bar
-    console.log(window.location.hash)
     this.movieId = window.location.hash.slice(9,window.location.hash.indexOf('?'))
-    console.log(this.movieId)
     this.$store.commit("hideTabbar");
     this.$store.commit("hideNavbar");
     this.$store.commit("showMine", {
@@ -118,7 +114,6 @@ export default {
     // 影片详情
     http.getMovieDetail(this.$route.params.movieid).then((res) => {
       this.movieInfo = res.data.data.movie;
-      console.log(this.movieInfo);
     });
     // 影院列表
     http.getDetailCinemas(
@@ -127,17 +122,13 @@ export default {
         this.$store.state.city.id
       )
       .then((res) => {
-        console.log(res.data);
         this.cinemas = res.data.data.cinemas;
-        console.log(this.cinemas);
       });
     // 选项卡
     http.getDetailSelect(this.$route.params.movieid, this.getNowTime(), this.$store.state.city.id).then((res) => {
-        console.log(res.data);
       });
     http.getDetailTime(this.$route.params.movieid, this.$store.state.city.id)
       .then((res) => {
-        // console.log(res.data);
         this.times = res.data.data.dates;
       });
   },

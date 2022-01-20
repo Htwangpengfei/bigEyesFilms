@@ -104,7 +104,6 @@ export default {
         // 验证是否是必填项
         function required() {
           if (el.value == "" || el.value == null) {
-            // console.log("不能为空");
             tipMsg("不能为空");
             return false;
           }
@@ -126,7 +125,6 @@ export default {
         // 最小长度验证
         function minlength(length) {
           if (el.value.length < length) {
-            //console.log('最小长度不能小于'+length);
             tipMsg("最小长度不能小于" + length);
             return false;
           }
@@ -137,7 +135,6 @@ export default {
         // 最大长度进行验证
         function maxlength(length) {
           if (el.value.length > length) {
-            //console.log('最大长度不能大于'+length);
             tipMsg("最大长度不能大于" + length);
             return false;
           }

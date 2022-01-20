@@ -27,7 +27,6 @@ export default {
       })
     },
     showDetail(movieid,nm){
-      console.log(movieid, 'this')
       // 动态路由
       this.$router.push({
         path:'/detail/'+movieid,

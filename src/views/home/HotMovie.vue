@@ -50,7 +50,6 @@ export default {
   },
   methods: {
     showDetail(movieid,nm){
-      console.log(movieid, 'this')
       // 动态路由
       this.$router.push({
         path:'/detail/'+movieid,
@@ -66,7 +65,6 @@ export default {
       let ds = d.querySelectorAll(".top-rated-item");
       let arr = [];
       [...ds].forEach((node) => {
-        // console.log(node);
         let obj = {
           id: node.getAttribute("data-id"),
           nm: node.querySelector("h5").innerHTML,
@@ -79,7 +77,6 @@ export default {
         }
         arr.push(obj);
       });
-      // console.log(arr);
       return arr;
     },
     movies() {
@@ -97,9 +94,7 @@ export default {
       });
       // 首页 热门 列表
       http.getHotMovieList().then((res) => {
-        console.log(res)
         this.movieList = res.data.movieList;
-        // console.log(this.movieList);
       });
     })
   },

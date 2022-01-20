@@ -45,7 +45,6 @@ export default {
             this.hotcities.push(city);
         }
         let code = py.slice(0, 1).toUpperCase();
-        // console.log(code);
         if (obj[code]) {
           obj[code].push(city);
         } else {
@@ -66,7 +65,6 @@ export default {
       // 不存在   发起网络请求
       http.getCityList().then((res) => {
         this.cities = res.data.cts;
-        //   console.log(this.cities)
         localStorage.cities = JSON.stringify(res.data.cts);
       });
     }

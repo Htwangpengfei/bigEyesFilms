@@ -25,7 +25,6 @@ export default {
   created() {},
   methods: {
      clickChoose(str) {
-       console.log(1)
        this.item1 = ''
        this.item2 = ''
        this.item3 = ''

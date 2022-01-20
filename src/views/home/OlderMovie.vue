@@ -34,7 +34,6 @@ export default {
   created() {
     http.getOldCityList().then((res) => {
       this.films = res.data;
-      // console.log(this.films);
     });
   },
   computed: {
@@ -56,7 +55,6 @@ export default {
         }
         arr.push(obj);
       });
-      console.log(arr);
       return arr;
     },
   },

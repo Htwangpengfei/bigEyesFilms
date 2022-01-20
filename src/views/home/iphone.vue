@@ -71,7 +71,6 @@ export default {
         // 验证是否是必填项
         function required() {
           if (el.value == "" || el.value == null) {
-            // console.log("不能为空");
             tipMsg("不能为空");
             return false;
           }

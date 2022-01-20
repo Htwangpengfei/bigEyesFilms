@@ -56,12 +56,10 @@ export default {
   },
   created() {
     http.getWillHeader().then((res) => {
-      console.log(res.data.coming);
       this.headerList = res.data.coming;
     });
     http.getWillText().then((res) => {
       this.wordList = res.data.coming;
-      console.log(res.data.coming);
     });
   },
   computed: {
